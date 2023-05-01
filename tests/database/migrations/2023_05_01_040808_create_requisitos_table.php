@@ -14,10 +14,11 @@ class CreateRequisitosTable extends Migration
     public function up()
     {
         Schema::create('requisitos', function (Blueprint $table) {
-            $table->integer('idRequisitos')->primary();
-            $table->string('nombreRequisito', 100);
-            $table->string('descripcionRequisito', 250);
+            $table->id();
+            $table->string('nombre', 100);
+            $table->string('descripcion', 250);
             $table->tinyInteger('estado');
+            $table->timestamps();
         });
     }
 

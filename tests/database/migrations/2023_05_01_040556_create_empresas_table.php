@@ -14,12 +14,13 @@ class CreateEmpresasTable extends Migration
     public function up()
     {
         Schema::create('empresas', function (Blueprint $table) {
-            $table->integer('idEmpresas')->primary();
-            $table->string('nombreEmpresa', 100);
-            $table->string('encargadoEmpresa', 100);
-            $table->string('rubroEmpresa', 100);
-            $table->string('direccionEmpresa', 100);
-            $table->string('telefonoEmpresa', 15);
+            $table->id();
+            $table->string('nombre', 100);
+            $table->string('encargado', 100);
+            $table->string('rubro', 100);
+            $table->string('direccion', 100);
+            $table->string('telefono', 15)->nullable();
+            $table->timestamps();
         });
     }
 

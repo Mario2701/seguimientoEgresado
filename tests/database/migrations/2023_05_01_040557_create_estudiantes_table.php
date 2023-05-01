@@ -14,13 +14,8 @@ class CreateEstudiantesTable extends Migration
     public function up()
     {
         Schema::create('estudiantes', function (Blueprint $table) {
-            $table->integer('idEstudiantes')->primary();
-            $table->string('codigoEstudiante', 15);
-            $table->string('nombreEstudiante', 25);
-            $table->string('apellidopEstudiante', 20);
-            $table->string('apellidomEstudiante', 20);
-            $table->string('telefonoEstudiante', 15);
-            $table->string('correoEstudiante', 50);
+            $table->id();
+            $table->timestamps();
         });
     }
 
