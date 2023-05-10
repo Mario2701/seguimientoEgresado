@@ -14,20 +14,17 @@ return new class extends Migration
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->id();
 
-            $table->string('codigo', 255)->change();
-            $table->string('nombre',255)->change();
-            $table->string('apellidop',255)->change();
-            $table->string('apellidom',255)->change();
-            $table->string('telefono',255)->change();
-            $table->string('correo',255)->change();
+            $table->string('Codigo', 255)->change();
+            $table->string('Nombre',255)->change();
+            $table->string('Apellidop',255)->change();
+            $table->string('Apellidom',255)->change();
+            $table->string('Telefono',255)->change();
+            $table->string('Correo',255)->change();
 
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('estudiantes');

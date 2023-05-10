@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInfcarateristicasprincipalesTable extends Migration
+class CreateJuntaDirectivaEgresadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateInfcarateristicasprincipalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('infcarateristicasprincipales', function (Blueprint $table) {
-            $table->id();
-
-            $table->string('preguntas', 250);
-            $table->string('respuestas',250);
-            $table->integer('Formularios_idFormulario');
-
+        Schema::create('junta_directiva_egresados', function (Blueprint $table) {
+            $table->id('junta_directiva_egresado_id');
+            $table->integer('egresado_id');
+            $table->integer('tipo_cargo_id');
+            $table->string('periodo_directiva', 15);
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateInfcarateristicasprincipalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('infcarateristicasprincipales');
+        Schema::dropIfExists('junta_directiva_egresados');
     }
 }
