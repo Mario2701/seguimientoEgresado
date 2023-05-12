@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
 use App\Models\Practica;
 use App\Models\Requisito;
 use App\Models\User;
@@ -44,10 +43,10 @@ class DatabaseSeeder extends Seeder
         TipoCargos::factory(10)->create();
         //User::factory(10)->create();
         //Practica::factory(50)->create();
-        //Requisito::factory(50)->create();
-        //Docente::factory(50)->create();
-        //Empresa::factory(50)->create();
-        //Etapa::factory(50)->create();
-        //Estudiante::factory(50)->create();
+        //Requisito::factory(10)->create();
+        //Docente::factory(10)->create();
+        //Empresa::factory(10)->create();
+        //Etapa::factory(10)->create();
+        //Estudiante::factory(10)->create();
     }
 }
