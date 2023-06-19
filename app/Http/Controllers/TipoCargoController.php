@@ -9,7 +9,7 @@ class TipoCargoController extends Controller
             //metodo para la pagina principal de Gestion de Practicas
             public function index(){
                 //usamos las sentencias de eloquent
-                $tipos = TipoCargos::orderBy('tipo_cargo_id','desc')->paginate();
+                $tipos = TipoCargos::orderBy('id','desc')->paginate();
                 return view("tipoCargos.index", compact('tipos'));
             }
         
@@ -27,10 +27,28 @@ class TipoCargoController extends Controller
         
                 return redirect()->route('tipoCargos.show',$tipo);
             }
-        
-            //metodo para mostrar los detalles del registro
-            public function show($tipoId){
-                $tipo = TipoCargos::where('tipo_cargo_id', $tipoId)->first();
+            public function show(TipoCargos $tipo){
                 return view('tipoCargos.show', compact('tipo'));
+                //compact se usa para enviar una variable a la vista
+            }
+        
+            //metodo para actualizar los registros
+            public function edit(TipoCargos $tipo){
+                return view('tipoCargos.edit', compact('tipo'));
+            }
+        
+            //metodo para actualizar registros
+            public function update(Request $request, TipoCargos $tipo){
+                $tipo->decripcion_cargo = $request->decripcion_cargo;
+                $tipo->save();
+        
+                return redirect()->route('tipoCargos.show', $tipo);
+            }
+
+            public function destroy( TipoCargos $tipo)
+
+            {
+                $tipo->delete();
+                return redirect()->route('tipoCargos.index')->with('success', 'Registro eliminado correctamente.');
             }
 }

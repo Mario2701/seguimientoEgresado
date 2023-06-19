@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     //Creando un metodo general
-    public function __invoke(){
+    public function index(){
         return view('home');
     }
 }

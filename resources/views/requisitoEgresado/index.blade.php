@@ -1,17 +1,26 @@
-@extends('layouts.plantillaIndexRequisitoEgresado')
+@extends('adminlte::page')
 @section('title','Requisito de egresado')
 @section('content')
-    <h1>Bienvenido a la pagina principal</h1>
+    <h1 style="text-align: center;">Bienvenido a la pagina principal</h1>
 
-    <a href="{{route('requisitoEgresado.create')}}">Nuevo Registro</a>
+    <table style="border-collapse: collapse; width: 100%;">
+        <thead>
+            <tr>
+                <th>Certificado de Egresado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($requisitos as $requisito)
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;"><a href="{{route('requisitoEgresado.show', $requisito->id)}}" class="button button-primary">{{$requisito->certificado_egresado}}</a></td>
+            </tr>
+            @endforeach 
+        </tbody>
+    </table>
 
-    <ul>
-        @foreach ($requisitos as $requisito)
-            <li>
-               <a href="{{route('requisitoEgresado.show', $requisito->requisito_egresados_id)}}">{{$requisito->certificado_egresado}}</a>
-            </li>
-        @endforeach 
-    </ul>
+    <br>
+
+    <a href="{{route('requisitoEgresado.create')}}" class="button button-primary" style="display: block; width: 150px; margin: auto;">Nuevo Registro</a>
 
     {{$requisitos->links()}}
 

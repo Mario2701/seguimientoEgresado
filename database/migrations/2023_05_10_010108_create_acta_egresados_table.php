@@ -12,10 +12,23 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('acta_egresados', function (Blueprint $table) {
-            $table->id('acta_egresado_id');
-            $table->integer('reunion_id');
-            $table->integer('junta_directiva_egresado_id');
-            $table->integer('egresado_id');
+            $table->id();
+
+            $table->unsignedBigInteger('reunion_id')->unique();
+            $table->foreign('reunion_id')->references('id')->on('reuniones')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
+            $table->unsignedBigInteger('junta_directiva_egresado_id')->nullable();
+            $table->foreign('junta_directiva_egresado_id')->references('id')->on('junta_directiva_egresados')
+            ->onDelete('set null')
+            ->onUpdate('cascade');
+
+            $table->unsignedBigInteger('egresado_id')->unique();
+            $table->foreign('egresado_id')->references('id')->on('egresados')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
 
             $table->string('resultado_acta_egresado', 255);
             $table->string('firma_responsable_acta_egresado', 255);

@@ -12,12 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reuniones', function (Blueprint $table) {
-            $table->id('reunion_id');
-            $table->integer('egresado_id');
+            $table->id();
             $table->datetime('fecha_reunion');
             $table->string('lugar_reunion',100);
             $table->string('agenda_reunion', 255);
             $table->string('objetivo_reunion', 255);
+            $table->unsignedBigInteger('egresado_id')->nullable();
+            $table->foreign('egresado_id')->references('id')->on('egresados')
+            ->onDelete('set null')
+            ->onUpdate('cascade');
+
+
             $table->timestamps();
         });
     }

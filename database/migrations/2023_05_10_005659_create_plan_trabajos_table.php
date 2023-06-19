@@ -12,10 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('plan_trabajos', function (Blueprint $table) {
-            $table->id('plan_trabajo_id');
-            $table->integer('cronograma_egresado_id');
-            $table->integer('evaluacion_trabajos_id');
-            $table->integer('egresado_id');
+            $table->id();
+
+            $table->unsignedBigInteger('cronograma_egresado_id')->unique();
+            $table->foreign('cronograma_egresado_id')->references('id')->on('cronograma_egresados')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
+            $table->unsignedBigInteger('evaluacion_trabajos_id')->unique();
+            $table->foreign('evaluacion_trabajos_id')->references('id')->on('evaluacion_trabajos')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
+            $table->unsignedBigInteger('egresado_id')->unique();
+            $table->foreign('egresado_id')->references('id')->on('egresados')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
+
             $table->string('informe_plan_trabajo', 255);
             $table->timestamps();
         });

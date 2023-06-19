@@ -14,10 +14,11 @@ class CreateFormatosTiposEvaluacionesTable extends Migration
     public function up()
     {
         Schema::create('formatos_tipos_evaluaciones', function (Blueprint $table) {
-            $table->id('formato_tipo_evaluacion_id');
+            $table->id();
             $table->string('rubrica_evaluacion', 200);
             $table->integer('resultado_evaluacion');
             $table->string('periodo_evaluacion', 8);
+
             $table->timestamps();
         });
     }

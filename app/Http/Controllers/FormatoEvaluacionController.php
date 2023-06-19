@@ -10,7 +10,7 @@ class FormatoEvaluacionController extends Controller
      //metodo para la pagina principal de Actas de egresados
     public function index(){
         //usamos las sentencias de eloquent
-        $formatos = FormatosTiposEvaluaciones::orderBy('formato_tipo_evaluacion_id','desc')->paginate();
+        $formatos = FormatosTiposEvaluaciones::orderBy('id','desc')->paginate();
         return view("formatoEvaluacion.index", compact('formatos'));
     }
     
@@ -29,9 +29,30 @@ class FormatoEvaluacionController extends Controller
         return redirect()->route('formatoEvaluacion.show',$formato);
     }
 
-    //metodo para mostrar los detalles del registro
-    public function show($formatoId){
-        $formato = FormatosTiposEvaluaciones::where('formato_tipo_evaluacion_id', $formatoId)->first();
+    public function show(FormatosTiposEvaluaciones $formato){
         return view('formatoEvaluacion.show', compact('formato'));
+        //compact se usa para enviar una variable a la vista
+    }
+
+    //metodo para actualizar los registros
+    public function edit(FormatosTiposEvaluaciones $formato){
+        return view('formatoEvaluacion.edit', compact('formato'));
+    }
+
+    //metodo para actualizar registros
+    public function update(Request $request, FormatosTiposEvaluaciones $formato){
+        $formato->rubrica_evaluacion = $request->rubrica_evaluacion;
+        $formato->resultado_evaluacion = $request->resultado_evaluacion;
+        $formato->periodo_evaluacion = $request->periodo_evaluacion;
+        $formato->save();
+
+        return redirect()->route('formatoEvaluacion.show', $formato);
+    }
+
+    public function destroy( FormatosTiposEvaluaciones $formato)
+
+    {
+        $formato->delete();
+        return redirect()->route('formatoEvaluacion.index')->with('success', 'Registro eliminado correctamente.');
     }
 }

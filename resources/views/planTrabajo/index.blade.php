@@ -1,4 +1,4 @@
-@extends('layouts.plantillaIndexPlanTrabajo')
+@extends('adminlte::page')
 @section('title','Plan de Trabajo')
 @section('content')
     <h1>Bienvenido a la pagina principal</h1>
@@ -8,7 +8,7 @@
     <ul>
         @foreach ($planes as $plane)
             <li>
-               <a href="{{route('planTrabajo.show', $plane->plan_trabajo_id)}}">{{$plane->informe_plan_trabajo}}</a>
+               <a href="{{route('planTrabajo.show', $plane->id)}}">{{$plane->informe_plan_trabajo}}</a>
             </li>
         @endforeach 
     </ul>

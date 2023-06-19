@@ -1,4 +1,4 @@
-@extends('layouts.plantillaIndexEvaluacionEgresado')
+@extends('adminlte::page')
 @section('title','Egresados')
 @section('content')
     <h1>Bienvenido a la pagina principal</h1>
@@ -8,7 +8,7 @@
     <ul>
         @foreach ($evaluaciones as $evaluacion)
             <li>
-               <a href="{{route('evaluacionEgresados.show', $evaluacion->evaluacion_egresado_id)}}">{{$evaluacion->evaluacion_egresado_id}}</a>
+               <a href="{{route('evaluacionEgresados.show', $evaluacion->id)}}">{{$evaluacion->id}}</a>
             </li>
         @endforeach 
     </ul>

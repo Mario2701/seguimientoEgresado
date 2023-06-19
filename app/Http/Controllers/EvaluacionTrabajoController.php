@@ -10,7 +10,7 @@ class EvaluacionTrabajoController extends Controller
          //metodo para la pagina principal de Actas de egresados
         public function index(){
             //usamos las sentencias de eloquent
-            $evaluacionT = EvaluacionTrabajos::orderBy('evaluacion_trabajos_id','desc')->paginate();
+            $evaluacionT = EvaluacionTrabajos::orderBy('id','desc')->paginate();
             return view("evaluacionTrabajo.index", compact('evaluacionT'));
         }
         
@@ -27,10 +27,30 @@ class EvaluacionTrabajoController extends Controller
             $evaluacionT->save();
             return redirect()->route('evaluacionTrabajo.show',$evaluacionT);
         }
+
+        public function show(EvaluacionTrabajos $evaluacion){
+            return view('evaluacionTrabajo.show', compact('evaluacion'));
+            //compact se usa para enviar una variable a la vista
+        }
     
-        //metodo para mostrar los detalles del registro
-        public function show($evaluacionId){
-            $evaluacionT = EvaluacionTrabajos::where('evaluacion_trabajos_id', $evaluacionId)->first();
-            return view('evaluacionTrabajo.show', compact('evaluacionT'));
+        //metodo para actualizar los registros
+        public function edit(EvaluacionTrabajos $evaluacion){
+            return view('evaluacionTrabajo.edit', compact('evaluacion'));
+        }
+    
+        //metodo para actualizar registros
+        public function update(Request $request, EvaluacionTrabajos $evaluacion){
+            $evaluacion->descripcion_evaluacion_trabajo = $request->descripcion_evaluacion_trabajo;
+            $evaluacion->porcentaje_avance_evaluacion_trabajo = $request->porcentaje_avance_evaluacion_trabajo;
+            $evaluacion->save();
+    
+            return redirect()->route('evaluacionTrabajo.show', $evaluacion);
+        }
+
+        public function destroy( EvaluacionTrabajos $evaluacion)
+
+        {
+            $evaluacion->delete();
+            return redirect()->route('evaluacionTrabajo.index')->with('success', 'Registro eliminado correctamente.');
         }
 }

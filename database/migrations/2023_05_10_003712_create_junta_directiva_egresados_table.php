@@ -14,9 +14,20 @@ class CreateJuntaDirectivaEgresadosTable extends Migration
     public function up()
     {
         Schema::create('junta_directiva_egresados', function (Blueprint $table) {
-            $table->id('junta_directiva_egresado_id');
-            $table->integer('egresado_id');
-            $table->integer('tipo_cargo_id');
+            $table->id();
+
+            $table->unsignedBigInteger('egresado_id')->unique();
+            $table->foreign('egresado_id')->references('id')->on('egresados')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
+
+            $table->unsignedBigInteger('tipo_cargo_id')->nullable();
+            $table->foreign('tipo_cargo_id')->references('id')->on('tipo_cargos')
+            ->onDelete('set null')
+            ->onUpdate('cascade');
+
+
             $table->string('periodo_directiva', 15);
             $table->timestamps();
         });

@@ -9,4 +9,8 @@ class TipoCargos extends Model
 {
     use HasFactory;
     protected $table = "tipo_cargos";
+
+    public function juntaDirectiva() {
+        return $this->hasMany('App\Models\JuntaDirectaEgresados', 'tipo_cargo_id');
+    }
 }

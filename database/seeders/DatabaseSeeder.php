@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+//use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Practica;
 use App\Models\Requisito;
@@ -29,19 +29,24 @@ class DatabaseSeeder extends Seeder
 
     public function run(): void
     {
-        ActaEgresados::factory(10)->create();
-        CronogramaEgresados::factory(10)->create();
-        Egresados::factory(10)->create();
+        $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
+        User::factory(10)->create();
+
+        FormatosTiposEvaluaciones::factory(10)->create();
         Empresas::factory(10)->create();
         EvaluacionEgresados::factory(10)->create();
+        CronogramaEgresados::factory(10)->create();
         EvaluacionTrabajos::factory(10)->create();
-        FormatosTiposEvaluaciones::factory(10)->create();
-        JuntaDirectaEgresados::factory(10)->create();
+        Egresados::factory(10)->create();
         PlanTrabajos::factory(10)->create();
         RequisitosEgresados::factory(10)->create();
-        Reuniones::factory(10)->create();
         TipoCargos::factory(10)->create();
-        //User::factory(10)->create();
+        Reuniones::factory(10)->create();
+        JuntaDirectaEgresados::factory(10)->create();
+        ActaEgresados::factory(10)->create();
+
+        
         //Practica::factory(50)->create();
         //Requisito::factory(10)->create();
         //Docente::factory(10)->create();

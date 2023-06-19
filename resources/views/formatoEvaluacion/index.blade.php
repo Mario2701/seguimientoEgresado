@@ -1,4 +1,4 @@
-@extends('layouts.plantillaIndexFormatoEvaluacion')
+@extends('adminlte::page')
 @section('title','Trabajo')
 @section('content')
     <h1>Bienvenido a la pagina principal</h1>
@@ -8,7 +8,7 @@
     <ul>
         @foreach ($formatos as $formato)
             <li>
-               <a href="{{route('formatoEvaluacion.show', $formato->formato_tipo_evaluacion_id)}}">{{$formato->rubrica_evaluacion}}</a>
+               <a href="{{route('formatoEvaluacion.show', $formato->id)}}">{{$formato->rubrica_evaluacion}}</a>
             </li> 
         @endforeach 
     </ul>

@@ -12,7 +12,7 @@ class FormatosTiposEvaluacionesFactory extends Factory
     {
         return [
             'rubrica_evaluacion' => $this->faker->url,
-            'resultado_evaluacion' => $this->faker->numberBetween(0,20),
+            'resultado_evaluacion' => $this->faker->numberBetween(1,20),
             "periodo_evaluacion" => $this->faker->randomElement($array = array ('2020-I','2020-II','20201-I',
             '2021-II','2022-I','20202-II'))
         ];

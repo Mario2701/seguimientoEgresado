@@ -9,4 +9,8 @@ class EvaluacionTrabajos extends Model
 {
     use HasFactory;
     protected $table = "evaluacion_trabajos";
+
+    public function planTrabajo() {
+        return $this->hasOne('App\Models\PlanTrabajos', 'evaluacion_trabajos_id');
+    }
 }

@@ -15,11 +15,18 @@ return new class extends Migration
             $table->id();
 
             $table->integer('codigo');
-            $table->integer('idestudiante');
+            //$table->integer('idestudiante');
             $table->integer('iddocente');
             $table->integer('idempresa');
             $table->integer('idetapa');
             $table->string('titulo');
+
+            $table->unsignedBigInteger('idestudiante')->unique()->nullable();
+            $table->foreign('idestudiante')
+            ->references('id')
+            ->on('estudiantes')
+            ->onDelete('set null')
+            ->onUpdate('cascade');
 
             $table->timestamps();
         });

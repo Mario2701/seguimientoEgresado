@@ -1,4 +1,4 @@
-@extends('layouts.plantillaIndexJuntaDirectiva')
+@extends('adminlte::page')
 @section('title','Trabajo')
 @section('content')
     <h1>Bienvenido a la pagina principal</h1>
@@ -8,7 +8,7 @@
     <ul>
         @foreach ($juntas as $junta)
             <li>
-               <a href="{{route('juntaDirectiva.show', $junta->junta_directiva_egresado_id)}}">{{$junta->periodo_directiva}}</a>
+               <a href="{{route('juntaDirectiva.show', $junta->id)}}">{{$junta->periodo_directiva}}</a>
             </li> 
         @endforeach 
     </ul>

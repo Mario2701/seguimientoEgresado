@@ -9,4 +9,8 @@ class RequisitosEgresados extends Model
 {
     use HasFactory;
     protected $table = "requisitos_egresados";
+
+    public function egresados() {
+        return $this->belongsTo('App\Models\Egresados', 'egresado_id');
+    }
 }
